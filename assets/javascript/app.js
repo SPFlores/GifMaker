@@ -44,12 +44,9 @@ document.addEventListener('click', ({ target }) => {
     if (target.dataset.myswitch === 'false') {
       target.src = target.dataset.playing
       target.dataset.myswitch = mySwitch
-      console.log(target.dataset.myswitch)
-      console.log('testing')
     } else {
       target.src = target.dataset.paused
       console.log(target.dataset.myswitch)
-      console.log('other testing')
     }
   }
 })
