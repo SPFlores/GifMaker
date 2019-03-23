@@ -13,8 +13,16 @@ const buttonMaker = _ => {
 
 const makeGifs = data => {
   data.forEach((gif, i) => {
-    console.log(gif)
-    console.log(i)
+    let gifImage = document.createElement('img')
+    let paused = gif.images.fixed_height_still.url
+    let playing = gif.images.fixed_height.url
+    let rating = gif.rating
+
+    gifImage.src = paused
+    gifImage.setAttribute('data-paused', paused)
+    gifImage.setAttribute('data-playing', playing)
+    gifImage.setAttribute('data-rating', rating)
+    document.querySelector('#gifs').append(gifImage)
   })
 
 }
@@ -22,11 +30,10 @@ const makeGifs = data => {
 document.addEventListener('click', e => {
   if (e.target.className === 'gifBtn') {
     let hero = e.target.dataset.hero
-    let limit = 10
+    let limit = 1
     fetch(`http://api.giphy.com/v1/gifs/search?q=${hero}&api_key=jijztlWGO1rAYgw6Q05K9Y3x1XJcXo5T&limit=${limit}`)
       .then(r => r.json())
       .then(r => {
-        // console.log(r)
         makeGifs(r.data)
       })
       .catch(e => console.log(e))
