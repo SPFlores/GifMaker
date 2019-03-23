@@ -1,7 +1,7 @@
 let topics = [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`]
-let mySwitch = false
 
 const buttonMaker = _ => {
+  document.querySelector('#buttons').innerHTML = ''
   for (let i = 0; i < topics.length; i++) {
     let gifBtn = document.createElement('button')
     gifBtn.textContent = topics[i]
@@ -24,7 +24,7 @@ const makeGifs = data => {
     gifImage.setAttribute('data-paused', paused)
     gifImage.setAttribute('data-playing', playing)
     gifImage.setAttribute('data-rating', rating)
-    gifImage.setAttribute('data-myswitch', mySwitch)
+    gifImage.setAttribute('data-myswitch', false)
     document.querySelector('#gifs').appendChild(gifImage)
   })
 }
@@ -40,17 +40,24 @@ document.addEventListener('click', ({ target }) => {
       })
       .catch(e => console.log(e))
   } else if (target.className === 'herogif') {
-    mySwitch = !mySwitch
     if (target.dataset.myswitch === 'false') {
       target.src = target.dataset.playing
-      target.dataset.myswitch = mySwitch
+      target.dataset.myswitch = true
     } else {
       target.src = target.dataset.paused
-      console.log(target.dataset.myswitch)
+      target.dataset.myswitch = false
     }
   }
 })
 
+document.querySelector('#submit').addEventListener('click', e => {
+  e.preventDefault()
+
+  let newHero = document.querySelector('#heroInput').value
+  topics.push(newHero)
+  buttonMaker()
+  document.querySelector('#heroInput').value = ''
+})
 // if you put a name in
 // make button
 
