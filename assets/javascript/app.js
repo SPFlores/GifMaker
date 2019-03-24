@@ -1,7 +1,7 @@
 let topics = JSON.parse(localStorage.getItem('topics')) || [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`, `Green Lantern`, `Deadpool`, `Wolverine`, `Captain Marvel`, `Robin`]
+let favorites = JSON.parse(sessionStorage.getItem('favorites')) || []
 let limit,
   hero
-let favorites = JSON.parse(sessionStorage.getItem('favorites')) || []
 
 const buttonMaker = _ => {
   document.querySelector('#buttons').innerHTML = ''
