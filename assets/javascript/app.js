@@ -1,6 +1,7 @@
 let topics = [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`]
 let limit,
   hero
+let favorites = JSON.parse(sessionStorage.getItem('favorites')) || []
 
 const buttonMaker = _ => {
   document.querySelector('#buttons').innerHTML = ''
@@ -13,29 +14,33 @@ const buttonMaker = _ => {
   }
 }
 
-const makeGifs = (data, hero) => {
-  document.querySelector('#gifs').innerHTML = ''
-  console.log(hero)
-
+const addMoreBtnMaker = hero => {
   document.querySelector('#addMoreBtn').innerHTML = ''
   let moreBtn = document.createElement('button')
   moreBtn.setAttribute('data-hero', hero)
   moreBtn.id = 'addMore'
   moreBtn.textContent = 'Add 10 more?'
   document.querySelector('#addMoreBtn').append(moreBtn)
+}
 
+const makeGifs = (data, hero) => {
+  document.querySelector('#gifs').innerHTML = ''
+
+  addMoreBtnMaker(hero)
+  
   data.forEach((gif, i) => {
     let gifImage = document.createElement('span')
     let paused = gif.images.fixed_width_still.url
     let playing = gif.images.fixed_width.url
     let rating = gif.rating
     let alt = gif.slug
-
+    
     gifImage.innerHTML = `
     <img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">
-    <h5>Rating: ${rating}</h5>
+    <p>Rating: ${rating}</p>
+    <button id="favorite">Favorite</button>
     `
-
+  
     document.querySelector('#gifs').append(gifImage)
   })
 }
@@ -70,7 +75,10 @@ document.addEventListener('click', ({ target }) => {
   } else if (target.id === 'addMore') {
     limit += 10
     gifBtnGet(target)
+  } else if (target.id === 'favorite') {
+    console.log('make favorite')
   }
+
 })
 
 document.querySelector('#submit').addEventListener('click', e => {
