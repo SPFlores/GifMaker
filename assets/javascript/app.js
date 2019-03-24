@@ -1,10 +1,4 @@
-let topics = [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`]
-// Green lantern
-// Deadpool
-// Wolverine
-// Colossus
-// Captain Marvel
-// Jean Gray
+let topics = JSON.parse(localStorage.getItem('topics')) || [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`, `Green Lantern`, `Deadpool`, `Wolverine`, `Captain Marvel`, `Robin`]
 let limit,
   hero
 let favorites = JSON.parse(sessionStorage.getItem('favorites')) || []
@@ -91,15 +85,17 @@ document.addEventListener('click', ({ target }) => {
     limit += 10
     gifBtnGet(target)
   } else if (target.id === 'favorite') {
+    // I know this section is pretty much the messiest thing to ever be written in JS, but it works for what I want to do and I'm okay with coming back to it later once I understand sessionStorage better to clean it up
     let alt = target.dataset.alt
     let paused = target.dataset.paused
     let playing = target.dataset.playing
     let rating = target.dataset.rating
     let myswitch = target.dataset.myswitch
 
-    let newFavGif = `<img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-myswitch="false">
+    let newFavGif = `<img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-myswitch=${myswitch}>
     <p>Rating: ${rating}</p>
     `
+
     favorites.push(newFavGif)
     sessionStorage.setItem('favorites', JSON.stringify(favorites))
     makeFavGifs()
@@ -111,6 +107,7 @@ document.querySelector('#submit').addEventListener('click', e => {
 
   let newHero = document.querySelector('#heroInput').value
   topics.push(newHero)
+  localStorage.setItem('topics', JSON.stringify(topics))
   buttonMaker()
   document.querySelector('#heroInput').value = ''
 })
