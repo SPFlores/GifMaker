@@ -1,4 +1,10 @@
 let topics = [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`]
+// Green lantern
+// Deadpool
+// Wolverine
+// Colossus
+// Captain Marvel
+// Jean Gray
 let limit,
   hero
 let favorites = JSON.parse(sessionStorage.getItem('favorites')) || []
@@ -45,19 +51,13 @@ const makeGifs = (data, hero) => {
   })
 }
 
-const makeFavGif = target => {
-
-  let favGif = document.createElement('span')
-  let alt = target.dataset.alt
-  let paused = target.dataset.paused
-  let playing = target.dataset.playing
-  let rating = target.dataset.rating
-  let myswitch = target.dataset.myswitch
-
-  favGif.innerHTML = `<img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-myswitch="false">
-  <p>Rating: ${rating}</p>
-  `
-document.querySelector('#favorited').append(favGif)
+const makeFavGifs = _ => {
+  document.querySelector('#favorited').innerHTML = ''
+  favorites.forEach(item => {
+    let favGif = document.createElement('span')
+    favGif.innerHTML = item
+    document.querySelector('#favorited').append(favGif)
+  })
 }
 
 const gifBtnGet = target => {
@@ -91,9 +91,19 @@ document.addEventListener('click', ({ target }) => {
     limit += 10
     gifBtnGet(target)
   } else if (target.id === 'favorite') {
-    makeFavGif(target)
-  }
+    let alt = target.dataset.alt
+    let paused = target.dataset.paused
+    let playing = target.dataset.playing
+    let rating = target.dataset.rating
+    let myswitch = target.dataset.myswitch
 
+    let newFavGif = `<img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-myswitch="false">
+    <p>Rating: ${rating}</p>
+    `
+    favorites.push(newFavGif)
+    sessionStorage.setItem('favorites', JSON.stringify(favorites))
+    makeFavGifs()
+  }
 })
 
 document.querySelector('#submit').addEventListener('click', e => {
@@ -106,3 +116,4 @@ document.querySelector('#submit').addEventListener('click', e => {
 })
 
 buttonMaker()
+makeFavGifs()
