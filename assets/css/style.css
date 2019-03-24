@@ -7,3 +7,9 @@ span {
   max-height: 150px;
   max-width: 175px;
 }
+
+@media only screen and (max-width: 640px) {
+  .herogif {
+    max-width: 146px;
+  }
+}
