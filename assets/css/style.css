@@ -1,6 +1,9 @@
-img {
-  display: inline;
-  max-width: 150px;
+span {
+  display: inline-block;
   margin: 5px;
-  align-content: center;
+}
+
+.herogif {
+  max-height: 150px;
+  max-width: 175px;
 }

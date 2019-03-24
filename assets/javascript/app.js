@@ -24,7 +24,7 @@ const makeGifs = data => {
 
     gifImage.innerHTML = `
     <img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">
-    <h5></h5>
+    <h5>Rating: ${rating}</h5>
     `
 
     document.querySelector('#gifs').appendChild(gifImage)
@@ -34,7 +34,7 @@ const makeGifs = data => {
 document.addEventListener('click', ({ target }) => {
   if (target.className === 'gifBtn') {
     let hero = target.dataset.hero
-    let limit = 3
+    let limit = 10
     fetch(`http://api.giphy.com/v1/gifs/search?q=${hero}&api_key=jijztlWGO1rAYgw6Q05K9Y3x1XJcXo5T&limit=${limit}`)
       .then(r => r.json())
       .then(r => {
@@ -60,7 +60,5 @@ document.querySelector('#submit').addEventListener('click', e => {
   buttonMaker()
   document.querySelector('#heroInput').value = ''
 })
-// if you put a name in
-// make button
 
 buttonMaker()
