@@ -1,4 +1,5 @@
 let topics = [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`]
+let hero
 
 const buttonMaker = _ => {
   document.querySelector('#buttons').innerHTML = ''
@@ -15,16 +16,17 @@ const makeGifs = data => {
   document.querySelector('#gifs').innerHTML = ''
 
   data.forEach((gif, i) => {
-    let gifImage = document.createElement('img')
+    let gifImage = document.createElement('span')
     let paused = gif.images.fixed_width_still.url
     let playing = gif.images.fixed_width.url
     let rating = gif.rating
-    gifImage.src = paused
-    gifImage.className = 'herogif'
-    gifImage.setAttribute('data-paused', paused)
-    gifImage.setAttribute('data-playing', playing)
-    gifImage.setAttribute('data-rating', rating)
-    gifImage.setAttribute('data-myswitch', false)
+    let alt = gif.slug
+
+    gifImage.innerHTML = `
+    <img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">
+    <h5></h5>
+    `
+
     document.querySelector('#gifs').appendChild(gifImage)
   })
 }
