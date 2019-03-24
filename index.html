@@ -6,16 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Martel+Sans:200" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Superhero Gif Maker</title>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container white-text">
 
     <div class="row">
       <div class="col s12 m12 l12 xl12">
-        <div id="buttons"></div>
+        <div id="buttons" class="center-align"></div>
       </div>
     </div>
 
@@ -27,14 +29,13 @@
       <div class="col s4 m3 l3 xl3">
         <div id="addNew">
           <form>
-            <label>Add a new hero:</label>
+            <label class="white-text">Add a new hero:</label>
             <input type="text" id="heroInput">
-            <button id="submit">Submit</button>
+            <button id="submit" class="teal darken-2 white-text btn-small">Submit</button>
           </form>
         </div>
         <br>
-        <div id="addMoreBtn">
-        </div>
+        <div id="addMoreBtn"></div>
       </div>
     </div>
 
@@ -42,7 +43,7 @@
 
     <div class="row">
       <div class="col s12 m12 l12 xl12">
-        <h5>Favorited Gifs</h5>
+        <h5 class="center-align">Favorited Gifs</h5>
         <div id="favorited"></div>
       </div>
     </div>

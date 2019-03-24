@@ -8,7 +8,7 @@ const buttonMaker = _ => {
   for (let i = 0; i < topics.length; i++) {
     let gifBtn = document.createElement('button')
     gifBtn.textContent = topics[i]
-    gifBtn.className = 'gifBtn'
+    gifBtn.className = 'gifBtn teal darken-2 white-text btn-small'
     gifBtn.setAttribute('data-hero', topics[i])
     document.querySelector('#buttons').append(gifBtn)
   }
@@ -19,6 +19,7 @@ const addMoreBtnMaker = hero => {
   let moreBtn = document.createElement('button')
   moreBtn.setAttribute('data-hero', hero)
   moreBtn.id = 'addMore'
+  moreBtn.className = 'teal darken-2 white-text btn-small'
   moreBtn.textContent = 'Add 10 more?'
   document.querySelector('#addMoreBtn').append(moreBtn)
 }
@@ -38,7 +39,7 @@ const makeGifs = (data, hero) => {
     gifImage.innerHTML = `
     <img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">
     <p>Rating: ${rating}</p>
-    <button id="favorite" data-alt="${alt}" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">Favorite</button>
+    <button class="teal darken-2 white-text btn-small" id="favorite" data-alt="${alt}" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">Favorite</button>
     `
 
     document.querySelector('#gifs').append(gifImage)
@@ -76,7 +77,7 @@ const gifPlayer = target => {
 }
 
 document.addEventListener('click', ({ target }) => {
-  if (target.className === 'gifBtn') {
+  if (target.classList.contains('gifBtn')) {
     limit = 10
     gifBtnGet(target)
   } else if (target.className === 'herogif') {
