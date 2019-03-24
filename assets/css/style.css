@@ -11,6 +11,7 @@ input, label {
 button {
   margin: 3px;
   font-family: 'Martel Sans', sans-serif;
+  max-height: 27px;
 }
 
 span {

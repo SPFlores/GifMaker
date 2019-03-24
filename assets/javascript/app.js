@@ -57,7 +57,7 @@ const makeFavGifs = _ => {
 
 const gifBtnGet = target => {
   let hero = target.dataset.hero
-  fetch(`http://api.giphy.com/v1/gifs/search?q=${hero}&api_key=jijztlWGO1rAYgw6Q05K9Y3x1XJcXo5T&limit=${limit}`)
+  fetch(`https://api.giphy.com/v1/gifs/search?q=${hero}&api_key=jijztlWGO1rAYgw6Q05K9Y3x1XJcXo5T&limit=${limit}`)
     .then(r => r.json())
     .then(r => {
       makeGifs(r.data, hero)
