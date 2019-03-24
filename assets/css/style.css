@@ -5,11 +5,11 @@ span {
 
 .herogif {
   max-height: 150px;
-  max-width: 175px;
+  max-width: 200px;
 }
 
 @media only screen and (max-width: 640px) {
   .herogif {
-    max-width: 146px;
+    max-width: 200px;
   }
 }
