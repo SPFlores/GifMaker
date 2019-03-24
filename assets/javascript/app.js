@@ -1,6 +1,6 @@
 let topics = [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`]
-let limit = 10
-let hero
+let limit,
+  hero
 
 const buttonMaker = _ => {
   document.querySelector('#buttons').innerHTML = ''
