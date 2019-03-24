@@ -27,22 +27,37 @@ const makeGifs = (data, hero) => {
   document.querySelector('#gifs').innerHTML = ''
 
   addMoreBtnMaker(hero)
-  
+
   data.forEach((gif, i) => {
     let gifImage = document.createElement('span')
     let paused = gif.images.fixed_width_still.url
     let playing = gif.images.fixed_width.url
     let rating = gif.rating
     let alt = gif.slug
-    
+
     gifImage.innerHTML = `
     <img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">
     <p>Rating: ${rating}</p>
-    <button id="favorite">Favorite</button>
+    <button id="favorite" data-alt="${alt}" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">Favorite</button>
     `
-  
+
     document.querySelector('#gifs').append(gifImage)
   })
+}
+
+const makeFavGif = target => {
+
+  let favGif = document.createElement('span')
+  let alt = target.dataset.alt
+  let paused = target.dataset.paused
+  let playing = target.dataset.playing
+  let rating = target.dataset.rating
+  let myswitch = target.dataset.myswitch
+
+  favGif.innerHTML = `<img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-myswitch="false">
+  <p>Rating: ${rating}</p>
+  `
+document.querySelector('#favorited').append(favGif)
 }
 
 const gifBtnGet = target => {
@@ -76,7 +91,7 @@ document.addEventListener('click', ({ target }) => {
     limit += 10
     gifBtnGet(target)
   } else if (target.id === 'favorite') {
-    console.log('make favorite')
+    makeFavGif(target)
   }
 
 })
