@@ -106,11 +106,18 @@ document.addEventListener('click', ({ target }) => {
 document.querySelector('#submit').addEventListener('click', e => {
   e.preventDefault()
 
-  let newHero = document.querySelector('#heroInput').value
-  topics.push(newHero)
-  localStorage.setItem('topics', JSON.stringify(topics))
-  buttonMaker()
-  document.querySelector('#heroInput').value = ''
+  if (document.querySelector('#heroInput').value === '') {
+    document.querySelector('#noBlanks').style.display = 'inline'
+    document.querySelector('#noBlanks').innerHTML = `
+    Please type a valid entry. Need help? Go <a href="https://en.wikipedia.org/wiki/Superhero" alt="superheros wiki atricle">here</a>.`
+  } else {
+    document.querySelector('#noBlanks').style.display = 'none'
+    let newHero = document.querySelector('#heroInput').value
+    topics.push(newHero)
+    localStorage.setItem('topics', JSON.stringify(topics))
+    buttonMaker()
+    document.querySelector('#heroInput').value = ''
+  }
 })
 
 buttonMaker()

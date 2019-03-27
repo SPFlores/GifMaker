@@ -14,7 +14,7 @@ Gifs can be favorited and will stay in the user's session storage. They appear a
 
 ##Future
 
-I tried to integrate this with another API to validate that what a user typed into the input field is a hero and not something else (e.g. an animal, their name, a random celebrity), but currently there are no APIs along this theme that will allow me to access this information with giving me a CORS error. This is something that I would like to integrate moving forward once I have the knowledge and skill to do so, however.
+I tried to integrate this with another API to validate that what a user typed into the input field is a hero and not something else (e.g. an animal, their name, a random celebrity), but currently there are no APIs along this theme that will allow me to access this information with giving me a CORS error. This is something that I would like to integrate moving forward once I have the knowledge and skill to do so, however. At the moment, the best I could do was make it display something if no text is entered and the user tries to create a button.
 
 ##Thanks!
 
