@@ -1,4 +1,4 @@
-let topics = JSON.parse(localStorage.getItem('topics')) || [`Batman`, `Wonder Woman`, `Captain America`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`, `Green Lantern`, `Wolverine`, `Captain Marvel`, `Robin`]
+let topics = JSON.parse(localStorage.getItem('topics')) || [`Batman`, `Captain America`, `Robin`, `Wonder Woman`, `Iron Man`, `Spiderman`, `Blue Beetle`, `Black Widow`, `Superman`, `Captain Marvel`]
 let favorites = JSON.parse(sessionStorage.getItem('favorites')) || []
 let limit,
   hero
@@ -39,7 +39,7 @@ const makeGifs = (data, hero) => {
     gifImage.innerHTML = `
     <img src="${paused}" alt="${alt}" class="herogif" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">
     <p>Rating: ${rating}</p>
-    <button class="teal darken-2 white-text btn-small" id="favorite" data-alt="${alt}" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">Favorite</button>
+    <button class="teal darken-2 white-text btn-small" id="favorite" data-alt="${alt}" data-paused="${paused}" data-playing="${playing}" data-rating="${rating}" data-myswitch="false">Favorite  <i class="tiny material-icons">favorite</i></button>
     `
 
     document.querySelector('#gifs').append(gifImage)
